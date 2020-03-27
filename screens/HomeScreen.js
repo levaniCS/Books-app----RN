@@ -96,8 +96,10 @@ const HomeScreen = (props) => {
       {data && data.length > 0 ? (
         <Section style={styles.sectionSt} title='Discover'>
           <SliderBox
+            onCurrentImagePressed={() => props.navigation.navigate('Discover')}
             images={images}
             dotColor={Colors.red}
+            onC={() => props.navigation.navigate('Popular')}
             inactiveDotColor={Colors.whiteLight}
             dotStyle={{
               width: 8,

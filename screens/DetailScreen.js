@@ -55,15 +55,18 @@ const DetailsScreen = (props) => {
     dispatch(toggleFavourite(bookId));
   }, [dispatch, bookId]);
 
-  const validDate = selectedBook.volumeInfo.publishedDate
-    ? selectedBook.volumeInfo.publishedDate
-    : '1998';
-  const validAuthor = selectedBook.volumeInfo.authors
-    ? selectedBook.volumeInfo.authors[0]
-    : 'David Olivei';
-  const validGenre = selectedBook.volumeInfo.categories
-    ? selectedBook.volumeInfo.categories[0]
-    : 'Drama';
+  const validDate =
+    selectedBook.volumeInfo && selectedBook.volumeInfo.publishedDate
+      ? selectedBook.volumeInfo.publishedDate
+      : '1998';
+  const validAuthor =
+    selectedBook.volumeInfo && selectedBook.volumeInfo.authors
+      ? selectedBook.volumeInfo.authors[0]
+      : 'David Olivei';
+  const validGenre =
+    selectedBook.volumeInfo && selectedBook.volumeInfo.categories
+      ? selectedBook.volumeInfo.categories[0]
+      : 'Drama';
 
   return (
     <ScrollView style={styles.screen}>

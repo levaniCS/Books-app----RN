@@ -8,5 +8,7 @@ export default {
   blackLight: '#333',
   blackMedium: '#33474e',
   black: '#000',
-  starCol: '#ffcc00'
+  starCol: '#ffcc00',
+  grad1: '#02AABD',
+  grad2: '#00CDAC'
 };

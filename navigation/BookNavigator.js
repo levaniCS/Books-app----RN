@@ -1,13 +1,16 @@
 import React from 'react';
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import {
+  createStackNavigator,
+  TransitionPresets,
+  TransitionSpecs
+} from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import {
   MaterialCommunityIcons,
   AntDesign,
-  MaterialIcons,
   FontAwesome
 } from '@expo/vector-icons';
 import { Platform } from 'react-native';
@@ -23,6 +26,7 @@ import SearchBookScreen from '../screens/SearchBookScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
 import PopularScreen from '../screens/PopularScreen';
 import RecommendedScreen from '../screens/RecommendedScreen';
+import Startup from '../screens/Startup';
 
 import Colors from '../constants/colors';
 
@@ -33,7 +37,11 @@ const defaultStackNavOptions = {
   headerTitleStyle: {
     fontFamily: 'sansBold'
   },
-  headerTintColor: Colors.blackMedium
+  headerTintColor: Colors.blackMedium,
+  TransitionSpecs: {
+    open: TransitionPresets.ScaleFromCenterAndroid,
+    close: TransitionSpecs.FadeInFromBottomAndroidSpec
+  }
 };
 
 const InnerNavigation = createStackNavigator(
@@ -143,11 +151,13 @@ const BooksFavTabNavigator =
 
 const WelcomeScreens = createSwitchNavigator({
   Starter: StarterScreen,
-  Auth: AuthScreen
+  Auth: AuthScreen,
+  Books: BooksFavTabNavigator
 });
 
 const MainNavigator = createSwitchNavigator({
   Welcome: WelcomeScreens,
+  Startup: Startup,
   Books: BooksFavTabNavigator
 });
 

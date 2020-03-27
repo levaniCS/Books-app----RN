@@ -6,13 +6,16 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
-import BooksNavigator from './navigation/BookNavigator';
+import NavigationContainer from './navigation/NavWithAuth';
+
+import AuthReducer from './store/reducers/auth';
 import BooksReducer from './store/reducers/books';
 
 enableScreens();
 
 const rootReducer = combineReducers({
-  books: BooksReducer
+  books: BooksReducer,
+  auth: AuthReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));
@@ -35,7 +38,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <BooksNavigator />
+      <NavigationContainer />
     </Provider>
   );
 };
@@ -43,18 +46,9 @@ const App = () => {
 export default App;
 
 /*
-1) დეტალების გვერდი
-2) ფავორიტების გვერდი
-3) რექომენდიდები, პოპულარის და დისქავერის დატა
+6) ლოგაუთის ბაგი
 
-4) ლოადინგიიი ( აიქონები )
-
-5) ჰედერიის გალამაზება
-6) ანიმაციურიი ტაპ ბარიიი  და ნავიგაციის ბაგები
-
-7) ფაიერბეისი და რეგისტრაციიააა
-8) დასაწყისიის სლაიდერიი
+7) სტარტერ გვერდიი
 
 9)პროფილის გვერრდი
-10) ლოგინ ლოგაუთი
  */

@@ -1,14 +1,33 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import SearchBar from '../components/SearchBar';
+import { useSelector } from 'react-redux';
+import BookList from '../components/BookList';
 
-const PopularScreen = () => {
+const PopularScreen = (props) => {
+  const data = useSelector((state) => state.books.booksData);
+
+  const selectItemHandler = (id) => {
+    props.navigation.navigate('Detail', {
+      id: id
+    });
+  };
+
   return (
-    <View>
-      <Text>PopularScreen</Text>
+    <View style={styles.screen}>
+      <BookList data={data} selectItemHandler={selectItemHandler} />
     </View>
   );
 };
 
-export default PopularScreen;
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    padding: 10
+  },
+  search: {
+    marginBottom: 10
+  }
+});
 
-const styles = StyleSheet.create({});
+export default PopularScreen;
